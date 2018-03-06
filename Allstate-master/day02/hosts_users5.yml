@@ -1,0 +1,5 @@
+---
+- hosts: webservers
+  remote_user: yourname
+  become: yes
+  become_method: su

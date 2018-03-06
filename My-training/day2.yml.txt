@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+  - name: install git
+    yum:
+      name: git
+      state: latest
+
+  - name: git clone
+    git:
+     repo: 'https://github.com/rgodishela/Allstate.git'
+     dest: /tmp/Allstate
+     clone: yes

@@ -1,0 +1,3 @@
+[defaults]
+inventory=day1hosts
+host_key_checking=false
