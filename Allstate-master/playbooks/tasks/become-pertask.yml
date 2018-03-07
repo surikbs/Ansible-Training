@@ -1,0 +1,15 @@
+---
+- hosts: mnode1
+  tasks:
+  - name: Install telnet
+    yum:
+     name: telnet
+     state: present
+    become: yes
+    become_method: sudo
+    become_user: root
+  - name: Ping the machine
+    ping:
+    become: yes
+    become_method: su
+    become_user: ec2-user

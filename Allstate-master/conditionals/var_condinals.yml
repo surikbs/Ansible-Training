@@ -1,0 +1,9 @@
+vars:
+  epic: true
+
+tasks:
+    - shell: echo "This certainly is epic!"
+      when: epic
+
+    - shell: echo "This certainly isn't epic!"
+      when: not epic

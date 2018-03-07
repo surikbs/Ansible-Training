@@ -1,0 +1,11 @@
+# common_tasks.yml
+---
+- name: Check whether the /etc dir exists
+  file:
+    path: /etc
+    state: directory
+
+- name: Create a directory in /etc
+  file:
+    path: /etc/student
+    state: directory

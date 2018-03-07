@@ -1,0 +1,8 @@
+- hosts: mnode2
+  strategy: debug
+  gather_facts: yes
+  vars:
+    pkg_name: not_exist
+  tasks:
+    - name: install package
+      apt: name={{ pkg_name }}

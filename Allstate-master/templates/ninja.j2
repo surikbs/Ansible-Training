@@ -1,0 +1,15 @@
+
+
+
+{% for user in users %}
+      {{ user }}
+{% endfor %}
+
+{# for statement #}
+{% for myuser in users if not myuser == "Snoopy" %}
+{{loop.index}} - {{ myuser }}
+{% endfor %}
+
+{% if finished %}
+   {{ result }}
+{% endif %}

@@ -1,0 +1,36 @@
+---
+- hosts: mnode2
+  tasks:
+  - name: this task is run even in check mode
+    copy: src=/etc/hosts /tmp/hosts
+    always_run: yes
+
+  - name: delegate action to local
+    command: ls -l /etc/hosts
+    delegate_to: 127.0.0.1
+  
+  - name: take out of load balancer pool
+    local_action: command ls -l /etc/hosts
+  - name: update and upgrade ubuntu machine
+    apt: 
+      upgrade=dist 
+      update_cache=yes 
+      dpkg_options='force-confold,force-confdef'
+    run_once: true
+    delegate_to: web01.example.org
+
+  - apt: name=cobbler state=installed
+    environment:
+       http_proxy: http://proxy.cognizant.com:6050
+
+- name: test play with serial
+  hosts: all
+  serial: 3
+
+- name: test play
+  hosts: all
+  serial: "30%"
+
+- hosts: all
+  max_fail_percentage: 30
+  serial: 10

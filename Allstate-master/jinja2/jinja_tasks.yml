@@ -1,0 +1,23 @@
+{{ list1 | min }}
+{{ [3, 4, 2] | max }}
+{{ list1 | unique }}
+{{ list1 | union(list2) }}
+{{ list1 | intersect(list2) }}
+{{ list1 | difference(list2) }}
+{{ list1 | symmetric_difference(list2) }}
+
+"{{ ['a','b','c']|random }}"
+{{ 100 |random(step=10) }}
+{{ 100 |random(1, 10) }}
+{{ 100 |random(start=1, step=10) }}
+
+{{ ['a','b','c']|shuffle }}
+
+{{ myvar | log }}
+{{ myvar | log(10) }}
+{{ myvar | pow(2) }}
+{{ myvar | pow(5) }}
+{{ myvar | root }}
+{{ myvar | root(5) }}
+
+

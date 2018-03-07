@@ -1,0 +1,5 @@
+newusers:
+  - name: student1
+    pw: ansible
+  - name: student2
+    pw: ansible

@@ -1,0 +1,10 @@
+- hosts: mnode4
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  vars: 
+#    user: jonathan
+  tasks:
+  - name: Creates the user {{ user }}
+    user:
+      name: "{{user}}"

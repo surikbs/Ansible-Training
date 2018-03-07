@@ -1,0 +1,11 @@
+- hosts: remote
+  tasks:
+  - name: install nginx
+    package:
+      name: nginx
+      state: latest
+
+  - name: start nginx
+    service:
+      name: nginx
+      state: started

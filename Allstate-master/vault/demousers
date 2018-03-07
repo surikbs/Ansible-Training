@@ -1,0 +1,5 @@
+newusers:
+  - name: demouser1
+    pw: redhat
+  - name: demouser2
+    pw: centos

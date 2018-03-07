@@ -1,0 +1,13 @@
+---
+- hosts: mnode1
+  gather_facts: off
+  tasks:
+  - name: Install Apache
+    action: yum name=httpd state=present
+
+  - name: Uninstall Apache
+    yum: name=httpd state=absent
+
+  - yum: name=tree state=present
+ 
+  - action: yum name=tree state=absent

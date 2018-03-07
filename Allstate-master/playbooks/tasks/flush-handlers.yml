@@ -1,0 +1,4 @@
+tasks:
+   - shell: some tasks go here
+   - meta: flush_handlers
+   - shell: some other tasks

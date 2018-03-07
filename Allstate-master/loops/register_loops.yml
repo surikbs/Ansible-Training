@@ -1,0 +1,5 @@
+- shell: "echo {{ item }}"
+  with_items:
+    - "one"
+    - "two"
+  register: echo

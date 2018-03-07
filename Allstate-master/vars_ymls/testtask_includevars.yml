@@ -1,0 +1,4 @@
+---
+packages:
+  web_packages: httpd
+  db_package: mariadb-server

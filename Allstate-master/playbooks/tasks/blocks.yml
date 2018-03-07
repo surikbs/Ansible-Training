@@ -1,0 +1,32 @@
+---
+- hosts: mnode1
+  vars:
+    maildir_path: /tmp/Maildir
+    maildir: /home/student/maildir
+    mail_package: postfix
+    mail_service: postfix
+  tasks:
+  - block:
+    - name: Create {{ maildir_path }}
+      file:
+       path: "{{maildir_path}}"
+       state: directory
+    rescue:
+    - name: Install mail packages
+      yum: 
+        name: "{{ item }}"
+        state: latest
+      with_items:
+        - "{{ mail_package }}"
+        - dovecot
+    always:
+    - name: start mail services
+      service: 
+        name: "{{ item }}"
+        state: started
+      with_items:
+        - "{{ mail_service }}"
+        - dovecot
+      register: command_result
+  - debug:
+      var: command_result

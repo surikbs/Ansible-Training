@@ -1,0 +1,10 @@
+---
+- hosts: mnode11
+  vars:
+    nginx_port: 8080
+  tasks:
+  - name: copy nginx template
+    template: 
+      src: ~/ktx/KTX/templates/nginx.j2
+      dest: /tmp/
+   

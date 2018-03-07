@@ -1,0 +1,29 @@
+- hosts: mnode4
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+  - name: Install HTTPD
+    yum:
+      name: httpd
+      state: latest
+  - name: Start and Enable HTTPD
+    service:
+      name: httpd
+      state: started
+      enabled: true
+
+- hosts: mnode3
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+  - name: Install SSH
+    yum:
+      name: openssh-server
+      state: latest
+  - name: Start and Enable the SSHD Service
+    service: 
+      name: sshd
+      enabled: true
+      state: started

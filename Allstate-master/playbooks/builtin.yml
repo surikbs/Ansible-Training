@@ -1,0 +1,6 @@
+- hosts: mnode1
+  gather_facts: true
+  tasks:
+  - debug: msg={{inventory_hostname}}
+  - debug: 
+     msg: "{{hostvars['mnode1'].ansible_eth0.ipv4.address}}"

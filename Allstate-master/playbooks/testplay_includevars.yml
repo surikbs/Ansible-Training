@@ -1,0 +1,9 @@
+- hosts: all
+  tasks:
+  - name: Includes the vars file and defines them
+    include_vars: ~/ktx/KTX/vars/testtask_includevars.yml
+  - name: Debugs the variables imported
+    debug:
+      msg: >
+        "{{ packages['web_package'] }} and {{ packages.db_package }} have been imported"
+ 

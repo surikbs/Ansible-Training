@@ -1,0 +1,10 @@
+- hosts: remote
+
+  vars:
+    httpd_port: 8080
+
+  tasks:
+  - import_tasks: apache_tasks.yml
+  
+  handlers:
+  - import_tasks: apache_handlers.yml

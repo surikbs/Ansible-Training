@@ -1,0 +1,19 @@
+  - shell: /usr/bin/foo
+    register: result
+    ignore_errors: True
+
+  - debug: msg="it failed"
+    when: result|failed
+
+  # in most cases you'll want a handler, but if you want to do something right now, this is nice
+  - debug: msg="it changed"
+    when: result|changed
+
+  - debug: msg="it succeeded in Ansible >= 2.1"
+    when: result|succeeded
+
+  - debug: msg="it succeeded"
+    when: result|success
+
+  - debug: msg="it was skipped"
+    when: result|skipped

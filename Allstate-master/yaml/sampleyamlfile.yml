@@ -1,0 +1,20 @@
+---
+title:     My book
+
+author:
+  first_name: Ansible
+  last_name: Operator
+
+publish_date: 26-07-2016
+
+Chapters:
+  - name: day01
+    titles: Day1agenda
+    pages: 10
+
+  - name: day02
+    titles: day02agenda
+    pages: 20
+
+...
+

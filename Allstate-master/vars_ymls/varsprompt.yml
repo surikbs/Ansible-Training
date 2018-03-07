@@ -1,0 +1,11 @@
+- hosts: all
+  vars_prompt:
+    - name: "pkg_name"
+      prompt: "What Package you wanna install?"
+      private: no
+  tasks:
+  - name: Install a {{pkg_name}}
+    yum: 
+      name: "{{pkg_name}}"
+      state: latest
+

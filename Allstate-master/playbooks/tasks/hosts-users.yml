@@ -1,0 +1,4 @@
+---
+- hosts: mnode1
+  remote_user: root
+  gather_facts: off

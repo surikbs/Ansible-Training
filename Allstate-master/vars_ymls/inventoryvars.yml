@@ -1,0 +1,10 @@
+- hosts: mnode1
+  tasks:
+  - name: create a file
+    file: 
+      path: /tmp/"{{ansible_file_name}}"
+      state: touch
+    register: command_result
+  - name: Show command result
+    debug:
+      var: command_result

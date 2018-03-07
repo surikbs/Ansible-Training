@@ -1,0 +1,12 @@
+- name: Block Vars Example
+  hosts: all
+  tasks:
+  - block:
+    - name: Install Apache
+      yum: 
+        name: httpd
+        state: "{{STATE_VALUE}}"
+    - name: Install Telnet
+      yum: name=telnet state={{STATE_VALUE}}
+  vars:
+    STATE_VALUE: latest

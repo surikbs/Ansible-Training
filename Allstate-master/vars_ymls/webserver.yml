@@ -1,0 +1,47 @@
+- hosts: mnode4
+  become: yes
+  become_method: sudo
+  gather_facts: no 
+  vars:
+    web_pkg: httpd
+    firewall_pkg: firewalld
+    web_service: httpd
+    firewall_service: firewalld
+#    python_pkg: python-httplib2
+    rule: http
+  tasks:
+  - name: Install required packages
+    yum:
+      name:
+        - "{{ web_pkg}}"
+        - "{{firewall_pkg}}"
+ #       - "{{python_pkg}}"
+  - name: Start and enable the {{firewall_service}}
+    service:
+      name: "{{ firewall_service }}"
+      enabled: true
+      state: started
+  - name: start and enable the {{web_service}}
+    service:
+      name: "{{ web_service}}"
+      enabled: true
+      state: started
+  - name: create the webcontent to be served
+    copy:
+      content: "Variables Web Content\n"
+      dest: /var/www/html/index.html
+  - name: open the port for {{ rule }}
+    firewalld:
+      service: "{{ rule }}"
+      permanent: true
+      immediate: true
+      state: enabled
+ 
+- hosts: mnode3
+  gather_facts: no
+  tasks:
+  - name: ensure the webserver is reachable
+    uri:
+      url: http://192.168.50.104
+      status_code: 200
+

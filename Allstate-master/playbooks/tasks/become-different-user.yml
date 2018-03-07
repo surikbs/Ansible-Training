@@ -1,0 +1,12 @@
+---
+- hosts: mnode1
+  remote_user: ec2-user
+  become: yes
+  become_user: root
+  tasks:
+  - block:
+    - name: Install Tree package
+      yum: 
+       name: tree
+       state: present
+ 

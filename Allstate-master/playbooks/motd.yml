@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+   User: " "
+  tasks:
+  - name: copy the template
+    template:
+      src: ~/legendary-waffle/playbooks/welcome.j2
+      dest: /etc/motd
+      mode: 0644

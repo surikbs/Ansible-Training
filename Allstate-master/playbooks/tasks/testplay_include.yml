@@ -1,0 +1,12 @@
+- hosts: all
+  tasks:
+  - name: Includes the tasks file and defines the variables
+    include: ~/ktx/KTX/tasks/testtask_include.yml
+    vars:
+      package: mariadb-server
+      service: mariadb
+      state: started
+    register: includeoutput
+  - name: Debugs the included tasks
+    debug:
+      var: includeoutput

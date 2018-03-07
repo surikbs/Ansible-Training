@@ -1,0 +1,7 @@
+- name: Extra Variables example
+  hosts: mnode1
+  tasks:
+  - name: Install {{pkg_name}}
+    yum:
+      name: "{{pkg_name}}"
+      state: present

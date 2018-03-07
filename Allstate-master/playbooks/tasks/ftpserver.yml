@@ -1,0 +1,34 @@
+- name: ftp server installed
+  hosts: mnode3
+  become: yes
+  become_method: sudo
+  tasks:
+  - block:
+    - name: Install VSFTPD 
+      yum:
+        name: vsftpd
+        state: latest
+    - name: Install firewalld
+      yum:
+        name: firewalld
+        state: latest
+  - block:
+    - name: Enable and run VSFTPD
+      service: 
+        name: vsftpd
+        enabled: true
+        state: started
+    - name: Enable firewalld and run it
+      service:
+        name: firewalld
+        enabled: true
+        state: started
+  - block:
+    - name: firewalld permits ftp service
+      firewalld:
+        service: ftp
+        permanent: true
+        state: enabled
+        immediate: yes
+
+

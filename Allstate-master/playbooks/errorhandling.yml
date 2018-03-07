@@ -1,0 +1,20 @@
+- hosts: all
+  force_handlers: yes
+  tasks:
+  - name: Install a package
+    yum:
+      name: NoPackage
+      state: latest
+    ignore_errors: true
+  handlers:
+  - name: restart sshd
+    service:
+      name: sshd
+      state: restarted
+  - shell:
+      cmd: /usr/local/bin/create_users.sh
+    register: command_result
+    failed_when: "'Password missing' in command_result.stdout"
+
+
+

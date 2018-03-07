@@ -1,0 +1,7 @@
+---
+ - red
+ - green
+ - blue
+
+fruits:
+  [ red, green, blue ]

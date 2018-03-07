@@ -1,0 +1,10 @@
+- name: install apache
+  package: 
+    name: httpd
+    state: latest
+
+- name: copy the customised conf file
+  template:
+     src: httpd.j2
+     dest: /etc/httpd/conf/httpd.conf
+  notify: restart apache

@@ -1,0 +1,8 @@
+---
+with_items:
+ - wget
+ - unzip
+
+yum:
+  name: httpd
+  state: present

@@ -1,0 +1,11 @@
+- hosts: databases
+  tasks:
+  - name: install postgresql
+    package:
+      name: postgresql
+      state: latest
+
+  - name: start postgresql
+    service:
+      name: postgresql
+      state: started

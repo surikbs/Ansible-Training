@@ -1,0 +1,75 @@
+---
+- hosts: mnode1
+  vars:
+     mail_services:
+        - postfix
+        - dovecot
+     alpha: [ 'a', 'b', 'c', 'd', 'e']
+     numbers: [ 1, 2, 3, 4 ]
+  tasks:
+  - name: Install postfix
+    yum: 
+       name: postfix
+       state: latest
+    tags:
+     - normal
+  - name: Install dovecot
+    yum: 
+       name: dovecot
+       state: latest
+    tags:
+     - normal
+  - name: Install packages using with_items loop
+    yum:
+       name: "{{ item }}"
+       state: latest
+    with_items:
+       - postfix
+       - dovecot
+    tags:
+     - firstloop
+  - name: Install packages using loop and variables
+    yum:
+       name: "{{ item }}"
+       state: latest
+    with_items: "{{ mail_services }}"
+    tags:
+     - secondloop
+  - name: copy files to different sources and different dests using loops
+    copy:
+       src: "{{ item.src }}"
+       dest: "{{ item.dest }}"
+    with_items:
+       - { src: '/etc/ansible/ansible.cfg', dest: '/tmp/'}
+       - { src: '/etc/ansible/hosts', dest: '/tmp/test2.txt'}
+    tags:
+     - thirdloop
+  - name: Read lines using with_lines
+    debug: 
+       msg: "I am from file {{ item }}"
+    with_lines:
+       - cat ~/legendary-waffle/linux.hosts
+    tags:
+     - lines
+  - name: List out files with_fileglob
+    copy: 
+       src: "{{ item }}" 
+       dest: "/tmp/"
+    with_fileglob:
+        - ~/legendary-waffle/playbooks/*yml
+    tags:
+     - fileglob
+  - name: Looping over parallel sets of data
+    debug: 
+       msg: "{{ item.0 | to_nice_json }} and {{ item.1|to_nice_json }}"
+    with_together:
+       - "{{ alpha }}"
+       - "{{ numbers }}"
+    tags:
+     - together
+  - name: Print Hello to Jonathan
+    debug:
+      msg: " Hello Jonathan"
+    tags:
+     - always
+

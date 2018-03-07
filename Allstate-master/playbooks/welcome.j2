@@ -1,0 +1,12 @@
+{% if User is defined %}
+Hey {{User }},
+{% endif %}
+Your system name is {{ansible_hostname}}
+Your System distribution is {{ansible_distribution}}
+Your system IP address is {{ansible_eth0['ipv4']['address']}}
+
+Please be assured to this machine with secure and every action of yours are being monitore.
+
+
+Cheers
+Jonathan

@@ -1,0 +1,2 @@
+SOURCE: /etc/hosts
+DESTINATION: /tmp/

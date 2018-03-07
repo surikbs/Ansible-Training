@@ -1,0 +1,11 @@
+- hosts: mnode4
+  tasks:
+  - name: Install the package
+    yum: 
+      name: httpd
+      state: latest
+    register: install_result
+
+  - name: Print the variable value
+    debug: 
+      var: install_result.results

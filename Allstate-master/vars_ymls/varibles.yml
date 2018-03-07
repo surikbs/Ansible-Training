@@ -1,0 +1,11 @@
+- hosts: all
+  vars:
+    user: Joey
+    home: /Users/Joey
+
+
+
+- hosts: all
+  vars_files:
+    - vars/usersvars.yml
+

@@ -1,0 +1,5 @@
+- hosts: all
+  tasks:
+  - name: show me the IP address of my remote machines
+    debug: 
+      msg: "my {{inventory_hostname}} has ip address {{ansible_eth0['ipv4']['address']}}"

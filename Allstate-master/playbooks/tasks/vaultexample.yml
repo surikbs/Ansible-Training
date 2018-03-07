@@ -1,0 +1,13 @@
+- hosts: mnode12
+  vars_prompt:
+  - name: "my_password"
+    prompt: "Enter password:"
+    private: yes
+    encrypt: "sha512_crypt"
+    confirm: yes
+    salt_size: 7
+  tasks:
+  - name: Creating users from demouser
+    user: 
+      name: demouser3
+      password: "{{ my_password }}"

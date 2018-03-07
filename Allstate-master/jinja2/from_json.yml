@@ -1,0 +1,5 @@
+tasks:
+  - shell: cat file.json
+    register: result
+
+  - set_fact: myvar="{{ result.stdout | from_json }}"

@@ -1,0 +1,18 @@
+---
+- hosts: oddvagrant
+  tasks:
+  - name: remote running process
+    command: ps
+    register: remote_process
+  - name; print remote process details
+    debug:
+      var: "{{remote_process.stdout}}"
+  - name: running local proocess
+   # local_action: command 'ps'
+    command: ps
+    delegate_to: localhost
+    register: local_process
+  - name: print the local process details
+    debug:
+      msg: "{{local_process.stdout}}"
+

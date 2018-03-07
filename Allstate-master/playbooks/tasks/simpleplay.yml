@@ -1,0 +1,12 @@
+- hosts: mnode1
+  gather_facts: no
+  tasks:
+  - name: first task
+    service:
+      name: httpd
+      enabled: true
+    ignore_errors: true
+  - name: second task
+    service:
+      name: sshd
+      enabled: true

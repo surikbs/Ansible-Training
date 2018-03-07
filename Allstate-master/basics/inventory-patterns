@@ -1,0 +1,15 @@
+ansible all -a "date" --list-hosts
+ansible "*"" -a "date" --list-hosts
+ansible mnode1 -i inventory --list-hosts
+ansible 10.10.10.4 -i myinventory --list-hosts
+ansible mnodes -i inventory --list-hosts
+ansible mnode1,10.10.10.5,local -i inventory --list-hosts
+ansible '10.10.10.*' -i inventory --list-hosts
+ansible 'loc*' -i inventory --list-hosts
+ansible 'local:mnodes' -i inventory --list-hosts
+ansible 'all:&mnodes' -i inventory --list-hosts
+ansible 'all:!db' -i inventory --list-hosts
+ansible 'mnodes[0]' -i inventory --list-hosts
+ansible 'mnodes[-1]' -i inventory --list-hosts
+ansible 'mnodes[0:1]' -i inventory --list-hosts
+ansible 'mnodes[0:]' -i inventory --list-hosts 

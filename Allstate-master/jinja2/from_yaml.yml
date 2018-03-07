@@ -1,0 +1,5 @@
+tasks:
+  - shell: cat /tmp/file.yaml
+    register: result
+
+  - set_fact: myvar="{{ result.stdout | from_yaml }}"

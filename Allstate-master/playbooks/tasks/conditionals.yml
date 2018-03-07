@@ -1,0 +1,26 @@
+---
+- hosts: mnode12
+  vars:
+    my_stat: True ## You may use True, Yes and 1 , False, No and 0
+  tasks:
+  - name: Install mariadb-server
+    yum:
+       name: mariadb-server
+       state: latest
+    when: inventory_hostname in groups["local"]
+    
+  - name: Find the postfix server status
+    command: /usr/bin/systemctl is-active postfix
+    ignore_errors: yes
+    register: result
+
+  - name: Restart Apache2 if postfix running
+    service:
+       name: httpd
+       state: restarted
+    when: result.rc == 0
+
+  - name: Installs a package
+    yum:
+      name: httpd
+    when: my_stat

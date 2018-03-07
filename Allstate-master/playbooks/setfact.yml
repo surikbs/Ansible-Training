@@ -1,0 +1,15 @@
+- hosts: mnode1
+  vars:
+   pkg: httpd
+  tasks:
+  - name: set the fact
+    set_fact:
+     pkg1: tree
+  - name: Install HTTPD
+    yum:
+     name: "{{pkg}}"
+     state: absent
+  - name: Install TREE
+    yum:
+     name: "{{pkg1}}"
+     state: absent

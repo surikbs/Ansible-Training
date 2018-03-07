@@ -1,0 +1,7 @@
+- hosts: all
+  vars:
+  - set_fact: one_fact="something" other_fact="anything"
+  tasks:
+  - name: use my facts
+    debug:
+      msg: "my one_fact value is {{one_fact}} and my other_fact is {{other_fact}}"

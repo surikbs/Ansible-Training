@@ -1,0 +1,32 @@
+  - block:
+    - name: Install VSFTPD 
+      yum:
+        name: "{{item}}"
+        state: latest
+      with_items:
+       - vsftpd
+       - firewalld
+      tags:
+       - installpackages
+  - block:
+    - name: Enable and run VSFTPD
+      service: 
+        name: "{{item}}"
+        enabled: true
+        state: started
+      with_items:
+       - vsftpd
+       - firewalld
+      tags:
+       - startservice
+  - block:
+    - name: firewalld permits ftp service
+      firewalld:
+        service: ftp
+        permanent: true
+        state: enabled
+        immediate: yes
+      tags:
+       - openftpport
+
+

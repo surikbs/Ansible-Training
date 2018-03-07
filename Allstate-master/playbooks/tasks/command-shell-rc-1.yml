@@ -1,0 +1,5 @@
+- hosts: mnode1
+  tasks:
+  - name: run this command and ignore the result
+    shell: /usr/bin/somecommand || /bin/true
+

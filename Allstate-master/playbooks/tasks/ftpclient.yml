@@ -1,0 +1,9 @@
+- name: ftp client installed
+  hosts: mnode4
+  become: yes
+  become_method: sudo
+  tasks:
+  - name: Install lftp
+    yum: 
+      name: lftp
+      state: latest

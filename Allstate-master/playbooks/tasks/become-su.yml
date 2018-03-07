@@ -1,0 +1,8 @@
+---
+- hosts: mnode1
+  become: yes
+  become_method: su
+  become_user: student
+  tasks:
+  - name: Ping the Mnode1
+    ping:

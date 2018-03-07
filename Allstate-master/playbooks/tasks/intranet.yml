@@ -1,0 +1,46 @@
+- name: intranet services
+  hosts: mnode1
+  become: yes
+  tasks:
+  - block:
+    - name: Install latest httpd
+      yum:
+        name: httpd
+        state: latest
+    - name: Install latest firewalld
+      yum:
+        name: firewalld
+        state: latest
+  - block:
+    - name: Enable and run httpd
+      service: 
+        name: httpd
+        enabled: true
+        state: started
+    - name: enable and run firewalld
+      service: 
+        name: firewalld
+        enabled: true
+        state: started
+  - block:
+    - name: firewalld permist http service
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+  - block: 
+    - name: Copy html content to index page
+      copy: 
+        content: "Welcome to the ANSIBLE HYDERABAD TRAINING intranet webpaage\n"
+        dest: /var/www/html/index.html
+    - name: Test the the index page
+      uri:
+       url: http://localhost/index.html
+       status_code: 200
+  
+
+
+
+       
+

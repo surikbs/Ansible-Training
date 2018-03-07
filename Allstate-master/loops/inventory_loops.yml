@@ -1,0 +1,11 @@
+# show all the hosts in the inventory
+- debug:
+    msg: "{{ item }}"
+  with_items:
+    - "{{ groups['all'] }}"
+
+# show all the hosts in the current play
+- debug:
+    msg: "{{ item }}"
+  with_items:
+    - "{{ ansible_play_batch }}"
